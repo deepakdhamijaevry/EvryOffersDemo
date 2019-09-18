@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragEnter, CdkDragExit } from '@angular/cdk/drag-drop';
 import { IControl } from './models/control';
 import { ITile } from './models/tile';
 import { IProposal } from './models/proposal';
@@ -14,22 +15,6 @@ export class AppComponent implements OnInit {
   _tilesArray: ITile[];
   _proposalArray: IProposal[];
 
- 
-  // todo = [
-  //   'Get to work',
-  //   'Pick up groceries',
-  //   'Go home',
-  //   'Fall asleep'
-  // ];
-
-  // done = [
-  //   'Get up',
-  //   'Brush teeth',
-  //   'Take a shower',
-  //   'Check e-mail',
-  //   'Walk dog'
-  // ];
-
 
   constructor(private mockDataSerivce: MockWrapperService) {
 
@@ -41,6 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
+    debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -50,7 +36,14 @@ export class AppComponent implements OnInit {
         event.currentIndex);
     }
   }
-
+  entered(event: CdkDragEnter<string[]>) {
+    debugger;
+    console.log('Entered', event.item.data);
+   }
+   exited(event: CdkDragExit<string[]>) {
+    debugger;
+     console.log('Exited', event.item.data);
+   }
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
     if (mockData !== null && mockData.length > 0) {
@@ -60,7 +53,6 @@ export class AppComponent implements OnInit {
           tilesArray.forEach(el => {
             let controlsArray: IControl[];
             controlsArray = data.children.filter(s => s.tileid == el);
-            debugger;
             this._tilesArray.push({ tileId: el, controls: controlsArray } as ITile)
           });
         };
@@ -72,7 +64,6 @@ export class AppComponent implements OnInit {
     if (mockData !== null && mockData.length > 0) {
       this._proposalArray = [];
       mockData.forEach(data => {
-        debugger;
         this._proposalArray.push({category :data.category, id : data.id, controls : data.children} as IProposal)
       });
     }

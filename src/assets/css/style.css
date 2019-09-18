@@ -307,3 +307,20 @@ input:focus, textarea:focus{
   text-decoration: none;
 }
 
+
+.info-right span:first-child{
+  width:100%;
+  float: left;
+}
+
+
+.info-right span:nth-child(2) {
+  width:70%;
+  float: left;
+}
+
+
+.info-right span:last-child{
+  width:30%;
+  float: right;
+}
