@@ -86,14 +86,15 @@
                           <div class="card">
                             <div class="card-header" id="headingOne">
                               <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
-                                  aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                              data-parent="#accordionExample">
                               <div class="card-body">
                                 <div class="row">
                                   <div class="col-lg-4 col-md-4 col-sm-4 col-12">
@@ -103,15 +104,27 @@
                                   </div>
                                 </div>
                                 <div class="dotted-bg">
-                                  <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12"><input type="text" class="form-control"
-                                        placeholder="Content Title"></div>
+                                  <div cdkDropList #todoList="cdkDropList" (cdkDropListDropped)="drop($event)"
+                                    [cdkDropListData]="_proposalArray[0]">
+                                    <div class="row" *ngFor="let item of _proposalArray[0].controls" cdkDrag>
+                                        {{item.order}}
+                                      <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
+                                        placeholder="Content Title" value="{{item.ctrvalue}}">
+
+                                      <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
+                                        id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea>
+
+                                      <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#" height="100" width="100" />
+                                    </div>
+                                  </div>
+
+                                  <!-- <div class="row">
                                     <div class="col-12"><textarea class="form-control" id="exampleFormControlTextarea1"
                                         rows="3"></textarea></div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12"><textarea class="form-control" id="exampleFormControlTextarea1"
-                                        rows="3"></textarea></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-12"><textarea class="form-control"
+                                        id="exampleFormControlTextarea1" rows="3"></textarea></div>
                                     <div class="col-12"><img src="../assets/images/dummy.jpg" title="#" alt="#" /></div>
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                             </div>
@@ -119,13 +132,14 @@
                           <div class="card">
                             <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                  aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                              data-parent="#accordionExample">
                               <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
                                 ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -141,13 +155,14 @@
                           <div class="card">
                             <div class="card-header" id="headingThree">
                               <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
-                                  aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                              data-parent="#accordionExample">
                               <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
                                 ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -170,14 +185,18 @@
                     <div class="title-text">
                       <h4>Tools</h4>
                       <ul class="icon-nav">
-                        <li><a href="javascript:void(0)"><img src="../assets/images/01.png" title="#" alt="#" /></a></li>
-                        <li><a href="javascript:void(0)"><img src="../assets/images/02.png" title="#" alt="#" /></a></li>
-                        <li><a href="javascript:void(0)"><img src="../assets/images/03.png" title="#" alt="#" /></a></li>
-                        <li><a href="javascript:void(0)"><img src="../assets/images/04.png" title="#" alt="#" /></a></li>
+                        <li><a href="javascript:void(0)"><img src="../assets/images/01.png" title="#" alt="#" /></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><img src="../assets/images/02.png" title="#" alt="#" /></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><img src="../assets/images/03.png" title="#" alt="#" /></a>
+                        </li>
+                        <li><a href="javascript:void(0)"><img src="../assets/images/04.png" title="#" alt="#" /></a>
+                        </li>
                       </ul>
                     </div>
 
-                    
+
                     <div class="title-text">
                       <h4>Content</h4>
                       <div class="white-search">

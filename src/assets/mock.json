@@ -7,38 +7,38 @@
       {
         "ctrltype": "title",
         "tileid": "1",
-        "ctrvalue": "test title",
-        "order": "1"
+        "ctrvalue": "What is Lorem Ipsum?",
+        "order": "0"
       },
       {
         "ctrltype": "desc",
         "tileid": "1",
-        "ctrvalue": "test description",
-        "order": "2"
+        "ctrvalue": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "order": "1"
       },
       {
         "ctrltype": "img",
         "tileid": "1",
-        "ctrvalue": "https://www.gstatic.com/webp/gallery3/1.png",
-        "order": "3"
+        "ctrvalue": "https://placeimg.com/640/480/any",
+        "order": "2"
       },
       {
         "ctrltype": "title",
         "tileid": "2",
-        "ctrvalue": "test title 2",
-        "order": "4"
+        "ctrvalue": "Where does it come from?",
+        "order": "3"
       },
       {
         "ctrltype": "desc",
         "tileid": "2",
-        "ctrvalue": "test description 2",
-        "order": "5"
+        "ctrvalue": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC",
+        "order": "4"
       },
       {
         "ctrltype": "img",
         "tileid": "2",
-        "ctrvalue": "https://www.gstatic.com/webp/gallery3/1.png",
-        "order": "6"
+        "ctrvalue": "https://picsum.photos/640/360",
+        "order": "5"
       }
     ]
   }
