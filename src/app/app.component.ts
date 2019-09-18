@@ -22,6 +22,14 @@ export class AppComponent implements OnInit {
     'Walk dog'
   ];
 
+
+  constructor() {
+    console.log('Reading local json files');
+    console.log(SampleJson);
+  }
+
+  ngOnInit() { }
+
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -32,12 +40,6 @@ export class AppComponent implements OnInit {
         event.currentIndex);
     }
   }
-  constructor() {
-    console.log('Reading local json files');
-    console.log(SampleJson);
-  }
-
-  ngOnInit() { }
 
 }
 
