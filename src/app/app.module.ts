@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MockWrapperService } from './services/mock.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -12,9 +13,11 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [MockWrapperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

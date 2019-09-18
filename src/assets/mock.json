@@ -26,19 +26,19 @@
         "ctrltype": "title",
         "tileid": "2",
         "ctrvalue": "test title 2",
-        "order": "1"
+        "order": "4"
       },
       {
         "ctrltype": "desc",
         "tileid": "2",
         "ctrvalue": "test description 2",
-        "order": "2"
+        "order": "5"
       },
       {
         "ctrltype": "img",
         "tileid": "2",
         "ctrvalue": "https://www.gstatic.com/webp/gallery3/1.png",
-        "order": "3"
+        "order": "6"
       }
     ]
   }
