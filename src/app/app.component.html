@@ -104,10 +104,10 @@
                                   </div>
                                 </div>
                                 <div class="dotted-bg">
-                                  <div cdkDropList #todoList="cdkDropList" (cdkDropListDropped)="drop($event)"
-                                    [cdkDropListData]="_proposalArray[0]">
+                                  <div cdkDropList id="list-proposal" (cdkDropListDropped)="drop($event)"
+                                    >
                                     <div class="row" *ngFor="let item of _proposalArray[0].controls" cdkDrag>
-                                        {{item.order}}
+                                     
                                       <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
                                         placeholder="Content Title" value="{{item.ctrvalue}}">
 
@@ -209,68 +209,35 @@
                           </div>
                         </div>
                       </div>
-                      <div class="content-box">
-                        <div class="row">
-                          <div class="info"><i class="fa fa-info" aria-hidden="true"></i></div>
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                            <h5>Content title</h5>
-                            <p>Text excerpt. Lorem ipsum dolorsit amet,
-                              consetetursadipscing elitr, sed diam nonumy
-                              eirmod tempor invidunt ut labore et dolore
-                              magna aliquyam erat, sed diam voluptua at.</p>
-                          </div>
-                          <div class="col-lg-5 col-md-5 col-sm-5 col-12">
-                            <span class="tilte-text">Content category</span>
-                            <img src="../assets/images/dummy-01.png" title="#" alt="#" class="img-fluid" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content-box">
-                        <div class="row">
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                            <h5>Content title</h5>
-                            <p>Text excerpt. Lorem ipsum dolorsit amet,
-                              consetetursadipscing elitr, sed diam nonumy
-                              eirmod tempor invidunt ut labore et dolore
-                              magna aliquyam erat, sed diam voluptua at.</p>
-                          </div>
-                          <div class="col-lg-5 col-md-5 col-sm-5 col-12">
-                            <span class="tilte-text">Content category</span>
-                            <img src="../assets/images/dummy-01.png" title="#" alt="#" class="img-fluid" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content-box">
-                        <div class="row">
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                            <h5>Content title</h5>
-                            <p>Text excerpt. Lorem ipsum dolorsit amet,
-                              consetetursadipscing elitr, sed diam nonumy
-                              eirmod tempor invidunt ut labore et dolore
-                              magna aliquyam erat, sed diam voluptua at.</p>
-                          </div>
-                          <div class="col-lg-5 col-md-5 col-sm-5 col-12">
-                            <span class="tilte-text">Content category</span>
-                            <img src="../assets/images/dummy-01.png" title="#" alt="#" class="img-fluid" />
-                          </div>
-                        </div>
-                      </div>
-                      <div class="content-box">
-                        <div class="row">
-                          <div class="col-lg-7 col-md-7 col-sm-7 col-12">
-                            <h5>Content title</h5>
-                            <p>Text excerpt. Lorem ipsum dolorsit amet,
-                              consetetursadipscing elitr, sed diam nonumy
-                              eirmod tempor invidunt ut labore et dolore
-                              magna aliquyam erat, sed diam voluptua at.</p>
-                          </div>
-                          <div class="col-lg-5 col-md-5 col-sm-5 col-12">
-                            <span class="tilte-text">Content category</span>
-                            <img src="../assets/images/dummy-01.png" title="#" alt="#" class="img-fluid" />
-                          </div>
-                        </div>
-                      </div>
 
+                      <!-- area for me -->
+
+                      <!-- <div
+                      cdkDropList
+                      #doneList="cdkDropList"
+                      [cdkDropListData]="done"
+                      [cdkDropListConnectedTo]="[todoList]"
+                     
+                      (cdkDropListDropped)="drop($event)">
+                      <div class="example-box" *ngFor="let item of _tilesArray" cdkDrag>{{item}}</div>
+                    </div> -->
+
+
+                   
+                      <!-- Section for RHS tiles -->
+                      <div cdkDropListSortingDisabled cdkDropList id="list-tiles" [cdkDropListConnectedTo]="['list-proposal']"  [cdkDropListData]="_tilesArray"   (cdkDropListDropped)="drop($event)"class="row">
+                      <div  cdkDrag [cdkDragData]="tile"  *ngFor="let tile of _tilesArray" tileid="tile.tileId" class="content-box">
+                        <div class="row info-right">
+                          <span  *ngFor="let control of tile.controls">
+                            <h5 *ngIf="control.ctrltype ==='title' ">{{control.ctrvalue}}</h5>
+                            <p *ngIf="control.ctrltype ==='desc' " >{{control.ctrvalue}}</p>
+                            <img *ngIf="control.ctrltype ==='img' " src="{{control.ctrvalue}}" title="#" alt="#" class="img-fluid" />
+                      
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                     <!-- Section for RHS tiles -->
 
 
                     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragEnter, CdkDragExit } from '@angular/cdk/drag-drop';
 import { IControl } from './models/control';
 import { ITile } from './models/tile';
 import { IProposal } from './models/proposal';
@@ -15,22 +16,6 @@ export class AppComponent implements OnInit {
   _proposalArray: IProposal[];
 
 
-  // todo = [
-  //   'Get to work',
-  //   'Pick up groceries',
-  //   'Go home',
-  //   'Fall asleep'
-  // ];
-
-  // done = [
-  //   'Get up',
-  //   'Brush teeth',
-  //   'Take a shower',
-  //   'Check e-mail',
-  //   'Walk dog'
-  // ];
-
-
   constructor(private mockDataSerivce: MockWrapperService) {
 
   }
@@ -42,24 +27,62 @@ export class AppComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     debugger;
-    /** if item is sorted or item is shuffeled in same container */
-    if (event.previousContainer === event.container) {
-     // moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      let previousIndexItem = this._proposalArray[0].controls.find(t => t.order == event.previousIndex);
-      let currentIndexItem = this._proposalArray[0].controls.find(t => t.order == event.currentIndex);
-      previousIndexItem.order = event.currentIndex;
-      currentIndexItem.order = event.previousIndex;
-      
-      this._proposalArray[0].controls.sort((a, b) => {
-        return <any>(a.order) - <any>(b.order);
-      });
+    if (this._proposalArray != null && this._proposalArray.length > 0 && this._proposalArray[0].controls.length > 0) {
+      /** if item is sorted or item is shuffeled in same container */
+      if (event.previousContainer === event.container) {
+        // moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        let previousIndexItem = this._proposalArray[0].controls.find(t => t.order == event.previousIndex);
+        let currentIndexItem = this._proposalArray[0].controls.find(t => t.order == event.currentIndex);
+        previousIndexItem.order = event.currentIndex;
+        currentIndexItem.order = event.previousIndex;
 
-    } else {
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+        this._proposalArray[0].controls.sort((a, b) => {
+          return <any>(a.order) - <any>(b.order);
+        });
+
+      } else {
+        // transferArrayItem(event.previousContainer.data,
+        //   event.container.data,
+        //   event.previousIndex,
+        //   event.currentIndex);
+        debugger;
+        let dropTile: ITile = event.item.data;
+        let newIndex = event.currentIndex;
+        dropTile.controls.forEach(data => {
+          this._proposalArray[0].controls.splice(newIndex, 0, data);
+          newIndex++;
+        });
+
+        this._proposalArray[0].controls.forEach((item, idx) => {
+          item.order = idx;
+        });
+        this._proposalArray[0].controls.sort((a, b) => {
+          return <any>(a.order) - <any>(b.order);
+        });
+      }
+      // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
     }
+    else {
+   // transferArrayItem(event.previousContainer.data,
+    //   event.container.data,
+    //   event.previousIndex,
+    //   event.currentIndex);
+    debugger;
+    let dropTile: ITile = event.item.data;
+    let newIndex = 0;
+    dropTile.controls.forEach(data => {
+      this._proposalArray[0].controls.splice(newIndex, 0, data);
+      newIndex++;
+    });
+
+    this._proposalArray[0].controls.forEach((item, idx) => {
+      item.order = idx;
+    });
+    this._proposalArray[0].controls.sort((a, b) => {
+      return <any>(a.order) - <any>(b.order);
+    });
+    }
+
   }
 
   getTilesData(mockData: any[]) {
@@ -71,7 +94,6 @@ export class AppComponent implements OnInit {
           tilesArray.forEach(el => {
             let controlsArray: IControl[];
             controlsArray = data.children.filter(s => s.tileid == el);
-            debugger;
             this._tilesArray.push({ tileId: el, controls: controlsArray } as ITile)
           });
         };
@@ -83,8 +105,8 @@ export class AppComponent implements OnInit {
     if (mockData !== null && mockData.length > 0) {
       this._proposalArray = [];
       mockData.forEach(data => {
-        debugger;
-        this._proposalArray.push({ category: data.category, id: data.id, controls: data.children } as IProposal)
+        // this._proposalArray.push({ category: data.category, id: data.id, controls: data.children.filter(x => x.tileid == 1) } as IProposal);
+        this._proposalArray.push({ category: data.category, id: data.id, controls: [] } as IProposal);
       });
     }
   }
