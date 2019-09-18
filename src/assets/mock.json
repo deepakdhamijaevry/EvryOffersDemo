@@ -1,0 +1,30 @@
+[
+    {
+      "ctrltype": "title",
+      "category": "summary",
+      "ctrvalue": "test title",
+      "url": "https://www.gstatic.com/webp/gallery3/1.png",
+      "order": "1"
+    },
+    {
+      "ctrltype": "sub title",
+      "category": "summary",
+      "ctrvalue": "test sub title",
+      "url": "https://www.gstatic.com/webp/gallery3/1.png",
+      "order": "2"
+    },
+    {
+      "ctrltype": "descrition",
+      "category": "summary",
+      "ctrvalue": "test description",
+      "url": "https://www.gstatic.com/webp/gallery3/1.png",
+      "order": "3"
+    },
+    {
+      "ctrltype": "image",
+      "category": "summary of description",
+      "ctrvalue": "test description",
+      "url": "https://www.gstatic.com/webp/gallery3/1.png",
+      "order": "4"
+    }
+  ]

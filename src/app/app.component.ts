@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-
+import SampleJson from '../assets/mock.json';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   todo = [
     'Get to work',
     'Pick up groceries',
@@ -32,6 +32,15 @@ export class AppComponent {
         event.currentIndex);
     }
   }
+  constructor() {
+    console.log('Reading local json files');
+    console.log(SampleJson);
+  }
+
+  ngOnInit() { }
+
 }
+
+
 
 
