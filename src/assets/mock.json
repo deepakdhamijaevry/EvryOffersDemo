@@ -13,7 +13,7 @@
       {
         "ctrltype": "desc",
         "tileid": "1",
-        "ctrvalue": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+        "ctrvalue": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
         "order": "1"
       },
       {
@@ -31,7 +31,7 @@
       {
         "ctrltype": "desc",
         "tileid": "2",
-        "ctrvalue": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC",
+        "ctrvalue": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of ",
         "order": "4"
       },
       {
