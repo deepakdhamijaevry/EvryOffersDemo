@@ -14,10 +14,17 @@ export class AppComponent implements OnInit {
   _mockDataArray: any[];
   _tilesArray: ITile[];
   _proposalArray: IProposal[];
-
+  _config: any;
 
   constructor(private mockDataSerivce: MockWrapperService) {
-
+    this._config = {
+      toolbar: [
+        ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'SelectAll', '-', 'Bold', 'Italic', 'Underline', 'StrikeThrough', '-', 'Outdent', 'Indent'],
+        ['list', 'indent', '-', 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+        ['Format', 'Font', 'FontSize'],
+      ],
+      extraPlugins: 'justify,font,selectall'
+    }
   }
 
   ngOnInit() {
@@ -27,16 +34,16 @@ export class AppComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     debugger;
-  
-      /** if item is sorted or item is shuffeled in same container */
-      if (event.previousContainer === event.container) {
-        this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
 
-      } else {
-        this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
-      }
-      // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
-   
+    /** if item is sorted or item is shuffeled in same container */
+    if (event.previousContainer === event.container) {
+      this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
+
+    } else {
+      this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
+    }
+    // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
+
 
   }
 

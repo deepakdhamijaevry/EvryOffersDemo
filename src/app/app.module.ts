@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MockWrapperService } from './services/mock.service';
+import { CKEditorModule } from 'ckeditor4-angular';
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +16,8 @@ import { MockWrapperService } from './services/mock.service';
     AppRoutingModule,
     DragDropModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    CKEditorModule
   ],
   providers: [MockWrapperService],
   bootstrap: [AppComponent]

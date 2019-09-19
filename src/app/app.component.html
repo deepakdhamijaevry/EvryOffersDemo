@@ -1,4 +1,3 @@
-
 <section class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -53,6 +52,7 @@
                           <input type="file" class="form-control-file">
                         </div>
                       </div>
+
                     </div>
                     <div class="row">
                       <div class="col-12">
@@ -78,17 +78,21 @@
                                   </div>
                                 </div>
                                 <div class="dotted-bg">
-                                  <div class="dotted-inner" cdkDropList id="list-proposal" (cdkDropListDropped)="drop($event)"
-                                    >
+                                  <div class="dotted-inner" cdkDropList id="list-proposal"
+                                    (cdkDropListDropped)="drop($event)">
                                     <div class="row" *ngFor="let item of _proposalArray[0].controls" cdkDrag>
-                                     
+
                                       <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
                                         placeholder="Content Title" value="{{item.ctrvalue}}">
 
-                                      <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
-                                        id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea>
+                                      <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
+                                        id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea> -->
 
-                                      <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#" height="100" width="100" />
+                                      <ckeditor *ngIf="item.ctrltype=='desc'" [config]="_config"
+                                        data="{{item.ctrvalue}}"></ckeditor>
+
+                                      <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
+                                        height="100" width="100" />
                                     </div>
                                   </div>
 
@@ -178,19 +182,23 @@
                       </div>
 
                       <!-- Section for RHS tiles -->
-                      <div cdkDropListSortingDisabled cdkDropList id="list-tiles" [cdkDropListConnectedTo]="['list-proposal']"  [cdkDropListData]="_tilesArray"   (cdkDropListDropped)="drop($event)"class="row">
-                      <div  cdkDrag [cdkDragData]="tile"  *ngFor="let tile of _tilesArray" tileid="tile.tileId" class="content-box">
-                        <div class="row info-right">
-                          <span  *ngFor="let control of tile.controls">
-                            <h5 *ngIf="control.ctrltype ==='title' ">{{control.ctrvalue}}</h5>
-                            <p *ngIf="control.ctrltype ==='desc' " >{{control.ctrvalue}}</p>
-                            <img *ngIf="control.ctrltype ==='img' " src="{{control.ctrvalue}}" title="#" alt="#" class="img-fluid" />
-                      
-                          </span>
+                      <div cdkDropListSortingDisabled cdkDropList id="list-tiles"
+                        [cdkDropListConnectedTo]="['list-proposal']" [cdkDropListData]="_tilesArray"
+                        (cdkDropListDropped)="drop($event)" class="row">
+                        <div cdkDrag [cdkDragData]="tile" *ngFor="let tile of _tilesArray" tileid="tile.tileId"
+                          class="content-box">
+                          <div class="row info-right">
+                            <span *ngFor="let control of tile.controls">
+                              <h5 *ngIf="control.ctrltype ==='title' ">{{control.ctrvalue}}</h5>
+                              <p *ngIf="control.ctrltype ==='desc' ">{{control.ctrvalue}}</p>
+                              <img *ngIf="control.ctrltype ==='img' " src="{{control.ctrvalue}}" title="#" alt="#"
+                                class="img-fluid" />
+
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                     <!-- Section for RHS tiles -->
+                      <!-- Section for RHS tiles -->
 
 
                     </div>
