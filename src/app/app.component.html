@@ -59,15 +59,14 @@
                           <div class="card">
                             <div class="card-header" id="headingOne">
                               <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse"
-                                  data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                  aria-expanded="true" aria-controls="collapseOne">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
 
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                              data-parent="#accordionExample">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                               <div class="card-body">
                                 <div class="row">
                                   <div class="col-lg-4 col-md-4 col-sm-4 col-12">
@@ -82,31 +81,32 @@
                                     <div *ngFor="let item of _proposalArray[0].controls" class="dotted-box" cdkDrag>
                                       <div class="col-lg-11 col-md-11 col-sm-11 col-11">
                                         <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
-                                          placeholder="Content Title" value="{{item.ctrvalue}}">
+                                          placeholder="Content Title" value="{{item.ctrvalue}}"/>
 
                                         <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
                                         id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea> -->
-                                         <div *ngIf="item.ctrltype=='desc'" class ="editor">
-                                        <ckeditor  id="exampleFormControlTextarea1" 
-                                          [config]="_config" data="{{item.ctrvalue}}"></ckeditor>
+                                        <div *ngIf="item.ctrltype=='desc'" class="editor">
+                                          <ckeditor id="exampleFormControlTextarea1" [config]="_config" data="{{item.ctrvalue}}"></ckeditor>
                                         </div>
                                         <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
                                           height="100" width="100" />
+                                         
                                       </div>
                                       <div class="col-lg-1 col-md-1 col-sm-1 col-1">
 
 
                                         <div class="dotted-handle" cdkDragHandle>
                                           <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+                                            <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
                                             </path>
                                             <path d="M0 0h24v24H0z" fill="none"></path>
                                           </svg>
                                         </div>
 
                                       </div>
+                                      
                                     </div>
+                                   
                                   </div>
 
                                 </div>
@@ -116,14 +116,13 @@
                           <div class="card">
                             <div class="card-header" id="headingTwo">
                               <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                  aria-expanded="false" aria-controls="collapseTwo">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                              data-parent="#accordionExample">
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                               <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
                                 ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -139,14 +138,13 @@
                           <div class="card">
                             <div class="card-header" id="headingThree">
                               <h2 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree"
+                                  aria-expanded="false" aria-controls="collapseThree">
                                   Category Name
                                 </button>
                               </h2>
                             </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                              data-parent="#accordionExample">
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                               <div class="card-body">
                                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
                                 ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
@@ -195,11 +193,9 @@
                       </div>
 
                       <!-- Section for RHS tiles -->
-                      <div cdkDropListSortingDisabled cdkDropList id="list-tiles"
-                        [cdkDropListConnectedTo]="['list-proposal']" [cdkDropListData]="_tilesArray"
-                        (cdkDropListDropped)="drop($event)" class="row">
-                        <div cdkDrag [cdkDragData]="tile" *ngFor="let tile of _tilesArray"
-                          class="content-box dotted-box">
+                      <div cdkDropListSortingDisabled cdkDropList id="list-tiles" [cdkDropListConnectedTo]="['list-proposal']"
+                        [cdkDropListData]="_tilesArray" (cdkDropListDropped)="drop($event)" class="row">
+                        <div cdkDrag [cdkDragData]="tile" *ngFor="let tile of _tilesArray" class="content-box dotted-box">
                           <div class="row info-right">
                             <span *ngFor="let control of tile.controls">
                               <h5 *ngIf="control.ctrltype ==='title' ">{{control.ctrvalue}}</h5>

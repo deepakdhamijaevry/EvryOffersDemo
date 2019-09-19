@@ -36,7 +36,10 @@ export class AppComponent implements OnInit {
 
     /** if item is sorted or item is shuffeled in same container */
     if (event.previousContainer === event.container) {
-      this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
+      let previousIndexItem = this._proposalArray[0].controls.find(t => t.order == event.previousIndex);
+      let currentIndexItem = this._proposalArray[0].controls.find(t => t.order == event.currentIndex);
+      previousIndexItem.order = event.currentIndex;
+      currentIndexItem.order = event.previousIndex;
       this._proposalArray[0].controls.sort((a, b) => {
         return <any>(a.order) - <any>(b.order);
       });
@@ -70,14 +73,7 @@ export class AppComponent implements OnInit {
    
 
   }
-  sortItemsinProposalList(previousIndex: number, currentIndex: number, proposalArray: IProposal[]) {
-    let previousIndexItem = proposalArray[0].controls.find(t => t.order == previousIndex);
-    let currentIndexItem = proposalArray[0].controls.find(t => t.order == currentIndex);
-    previousIndexItem.order = currentIndex;
-    currentIndexItem.order = previousIndex;
-    this._proposalArray[0] = proposalArray[0];
-
-  }
+ 
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
     if (mockData !== null && mockData.length > 0) {
