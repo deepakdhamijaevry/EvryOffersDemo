@@ -14,10 +14,17 @@ export class AppComponent implements OnInit {
   _mockDataArray: any[];
   _tilesArray: ITile[];
   _proposalArray: IProposal[];
-
+  _config: any;
 
   constructor(private mockDataSerivce: MockWrapperService) {
-
+    this._config = {
+      toolbar: [
+        ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', 'SelectAll', '-', 'Bold', 'Italic', 'Underline', 'StrikeThrough', '-', 'Outdent', 'Indent'],
+        ['list', 'indent', '-', 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+        ['Format', 'Font', 'FontSize'],
+      ],
+      extraPlugins: 'justify,font,selectall'
+    }
   }
 
   ngOnInit() {
@@ -69,9 +76,7 @@ export class AppComponent implements OnInit {
     previousIndexItem.order = currentIndex;
     currentIndexItem.order = previousIndex;
     this._proposalArray[0] = proposalArray[0];
-    // proposalArray[0].controls.sort((a, b) => {
-    //   return <any>(a.order) - <any>(b.order);
-    // });
+
   }
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
