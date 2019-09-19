@@ -206,6 +206,12 @@ input:focus, textarea:focus{
   padding: 30px 20px;
   margin: 20px 0 10px;
 }
+.dotted-inner{
+  min-height: 80px;
+    height: auto;
+    border: 1px solid #c7c7c7;
+    margin-bottom: 10px;
+}
 
 .dotted-bg input, .dotted-bg textarea {
   margin-bottom:20px;
