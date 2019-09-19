@@ -213,7 +213,7 @@ input:focus, textarea:focus{
     padding-bottom: 120px;
 }
 
-.dotted-bg input, .dotted-bg textarea, .dotted-bg img{
+.dotted-bg input, .dotted-bg textarea, .dotted-bg img, .editor {
   margin-bottom:20px;
 }
 

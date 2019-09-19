@@ -86,10 +86,10 @@
 
                                         <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
                                         id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea> -->
-
-                                        <ckeditor id="exampleFormControlTextarea1" *ngIf="item.ctrltype=='desc'"
+                                         <div *ngIf="item.ctrltype=='desc'" class ="editor">
+                                        <ckeditor  id="exampleFormControlTextarea1" 
                                           [config]="_config" data="{{item.ctrvalue}}"></ckeditor>
-
+                                        </div>
                                         <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
                                           height="100" width="100" />
                                       </div>
