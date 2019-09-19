@@ -33,22 +33,17 @@ export class AppComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    debugger;
+      /** if item is sorted or item is shuffeled in same container */
+      if (event.previousContainer === event.container) {
+        this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
 
-    /** if item is sorted or item is shuffeled in same container */
-    if (event.previousContainer === event.container) {
-      this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
-
-    } else {
-      this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
-    }
-    // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
-
-
+      } else {
+        this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
+      }
+      // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
   }
-
+  
   addItemsToProposalList(index: number, proposalArray: IProposal[], dropTile: ITile) {
-    debugger;
     dropTile.controls.forEach(data => {
       proposalArray[0].controls.splice(index, 0, data);
       index++;

@@ -52,7 +52,6 @@
                           <input type="file" class="form-control-file">
                         </div>
                       </div>
-
                     </div>
                     <div class="row">
                       <div class="col-12">
@@ -78,21 +77,35 @@
                                   </div>
                                 </div>
                                 <div class="dotted-bg">
-                                  <div class="dotted-inner" cdkDropList id="list-proposal"
+                                  <div class="dotted-inner dotted-list " cdkDropList id="list-proposal"
                                     (cdkDropListDropped)="drop($event)">
-                                    <div class="row" *ngFor="let item of _proposalArray[0].controls" cdkDrag>
+                                    <div *ngFor="let item of _proposalArray[0].controls" class="dotted-box" cdkDrag>
+                                      <div class="col-lg-11 col-md-11 col-sm-11 col-11">
+                                        <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
+                                          placeholder="Content Title" value="{{item.ctrvalue}}">
 
-                                      <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
-                                        placeholder="Content Title" value="{{item.ctrvalue}}">
-
-                                      <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
+                                        <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
                                         id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea> -->
 
-                                      <ckeditor *ngIf="item.ctrltype=='desc'" [config]="_config"
-                                        data="{{item.ctrvalue}}"></ckeditor>
+                                        <ckeditor id="exampleFormControlTextarea1" *ngIf="item.ctrltype=='desc'"
+                                          [config]="_config" data="{{item.ctrvalue}}"></ckeditor>
 
-                                      <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
-                                        height="100" width="100" />
+                                        <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
+                                          height="100" width="100" />
+                                      </div>
+                                      <div class="col-lg-1 col-md-1 col-sm-1 col-1">
+
+
+                                        <div class="dotted-handle" cdkDragHandle>
+                                          <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                              d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+                                            </path>
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                          </svg>
+                                        </div>
+
+                                      </div>
                                     </div>
                                   </div>
 
@@ -185,8 +198,8 @@
                       <div cdkDropListSortingDisabled cdkDropList id="list-tiles"
                         [cdkDropListConnectedTo]="['list-proposal']" [cdkDropListData]="_tilesArray"
                         (cdkDropListDropped)="drop($event)" class="row">
-                        <div cdkDrag [cdkDragData]="tile" *ngFor="let tile of _tilesArray" tileid="tile.tileId"
-                          class="content-box">
+                        <div cdkDrag [cdkDragData]="tile" *ngFor="let tile of _tilesArray"
+                          class="content-box dotted-box">
                           <div class="row info-right">
                             <span *ngFor="let control of tile.controls">
                               <h5 *ngIf="control.ctrltype ==='title' ">{{control.ctrvalue}}</h5>
