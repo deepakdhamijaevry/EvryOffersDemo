@@ -27,40 +27,51 @@ export class AppComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
 
-      /** if item is sorted or item is shuffeled in same container */
-      if (event.previousContainer === event.container) {
-        this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
+    /** if item is sorted or item is shuffeled in same container */
+    if (event.previousContainer === event.container) {
+      this.sortItemsinProposalList(event.previousIndex, event.currentIndex, this._proposalArray);
+      this._proposalArray[0].controls.sort((a, b) => {
+        return <any>(a.order) - <any>(b.order);
+      });
 
-      } else {
-        this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
-      }
-      // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
-   
+    } else {
+      this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
+      this._proposalArray[0].controls.sort((a, b) => {
+        return <any>(a.order) - <any>(b.order);
+      });
+    }
+    // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
+
 
   }
 
-  addItemsToProposalList(index: number, proposalArray: IProposal[], dropTile: ITile) {
+  addItemsToProposalList(index: number, proposalList: IProposal[], dropTile: ITile) {
+    let proposalArr: IProposal[] ;
     dropTile.controls.forEach(data => {
-      proposalArray[0].controls.splice(index, 0, data);
+      proposalList[0].controls.splice(index, 0, data);
       index++;
     });
 
-    proposalArray[0].controls.forEach((item, idx) => {
-      item.order = idx;
-    });
-    proposalArray[0].controls.sort((a, b) => {
-      return <any>(a.order) - <any>(b.order);
-    });
+
+      proposalArr[0].category = proposalList[0].category;
+      proposalList[0].controls.forEach((item, idx) => {
+        item.order = idx;
+        proposalArr[0].controls.push(item);
+      });
+
+    this._proposalArray[0]= proposalArr[0];
+   
+
   }
   sortItemsinProposalList(previousIndex: number, currentIndex: number, proposalArray: IProposal[]) {
     let previousIndexItem = proposalArray[0].controls.find(t => t.order == previousIndex);
     let currentIndexItem = proposalArray[0].controls.find(t => t.order == currentIndex);
     previousIndexItem.order = currentIndex;
     currentIndexItem.order = previousIndex;
-
-    proposalArray[0].controls.sort((a, b) => {
-      return <any>(a.order) - <any>(b.order);
-    });
+    this._proposalArray[0] = proposalArray[0];
+    // proposalArray[0].controls.sort((a, b) => {
+    //   return <any>(a.order) - <any>(b.order);
+    // });
   }
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
