@@ -46,11 +46,8 @@ export class AppComponent implements OnInit {
       });
 
     } else {
-      // this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
-
       let index = event.currentIndex;
-      const cotrols = event.item.data.controls;
-      var tempArray = JSON.parse(JSON.stringify(cotrols));
+      var tempArray = JSON.parse(JSON.stringify(event.item.data.controls));
       tempArray.forEach(data => {
         this._proposalArray[0].controls.splice(index, 0, data);
         index++;
@@ -65,25 +62,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  addItemsToProposalList(index: number, proposalList: IProposal[], dropTile: ITile) {
-    let proposalArr: IProposal[];
-
-    dropTile.controls.forEach(data => {
-      proposalList[0].controls.splice(index, 0, data);
-      index++;
-    });
-
-
-    proposalArr[0].category = proposalList[0].category;
-    proposalList[0].controls.forEach((item, idx) => {
-      item.order = idx;
-      proposalArr[0].controls.push(item);
-    });
-
-    this._proposalArray[0] = proposalArr[0];
-
-
-  }
 
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
