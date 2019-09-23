@@ -91,12 +91,12 @@
                                         <div *ngFor="let item of _proposalArray[0].controls" class="dotted-box" cdkDrag>
                                           <div class="col-lg-11 col-md-11 col-sm-11 col-11">
                                             <input *ngIf="item.ctrltype=='title'" type="text" class="form-control"
-                                              placeholder="Content Title" value="{{item.ctrvalue}}"/>
+                                              placeholder="Content Title" [(ngModel)]="item.ctrvalue" />
     
                                             <!-- <textarea class="form-control" *ngIf="item.ctrltype=='desc'"
                                             id="exampleFormControlTextarea1" rows="3">{{item.ctrvalue}}</textarea> -->
                                             <div *ngIf="item.ctrltype=='desc'" class="editor">
-                                              <ckeditor id="exampleFormControlTextarea1" [config]="_config" data="{{item.ctrvalue}}"></ckeditor>
+                                              <ckeditor id="exampleFormControlTextarea1" [(ngModel)]="item.ctrvalue" [config]="_config" ></ckeditor>
                                             </div>
                                             <img *ngIf="item.ctrltype=='img'" src="{{item.ctrvalue}}" title="#" alt="#"
                                               height="100" width="100" />

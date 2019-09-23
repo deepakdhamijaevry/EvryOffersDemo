@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
         ['list', 'indent', '-', 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
         ['Format', 'Font', 'FontSize'],
       ],
-      extraPlugins: 'justify,font,selectall'
+      extraPlugins: 'justify,font,selectall',
+      autoParagraph : false
     }
   }
 
@@ -45,7 +46,16 @@ export class AppComponent implements OnInit {
       });
 
     } else {
-      this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
+      // this.addItemsToProposalList(event.currentIndex, this._proposalArray, event.item.data);
+
+      let index = event.currentIndex;
+      const cotrols = event.item.data.controls;
+      var tempArray = JSON.parse(JSON.stringify(cotrols));
+      tempArray.forEach(data => {
+        this._proposalArray[0].controls.splice(index, 0, data);
+        index++;
+      });
+
       this._proposalArray[0].controls.sort((a, b) => {
         return <any>(a.order) - <any>(b.order);
       });
@@ -56,24 +66,25 @@ export class AppComponent implements OnInit {
   }
 
   addItemsToProposalList(index: number, proposalList: IProposal[], dropTile: ITile) {
-    let proposalArr: IProposal[] ;
+    let proposalArr: IProposal[];
+
     dropTile.controls.forEach(data => {
       proposalList[0].controls.splice(index, 0, data);
       index++;
     });
 
 
-      proposalArr[0].category = proposalList[0].category;
-      proposalList[0].controls.forEach((item, idx) => {
-        item.order = idx;
-        proposalArr[0].controls.push(item);
-      });
+    proposalArr[0].category = proposalList[0].category;
+    proposalList[0].controls.forEach((item, idx) => {
+      item.order = idx;
+      proposalArr[0].controls.push(item);
+    });
 
-    this._proposalArray[0]= proposalArr[0];
-   
+    this._proposalArray[0] = proposalArr[0];
+
 
   }
- 
+
   getTilesData(mockData: any[]) {
     this._tilesArray = [];
     if (mockData !== null && mockData.length > 0) {
