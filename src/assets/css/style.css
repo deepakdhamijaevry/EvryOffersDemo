@@ -397,3 +397,6 @@ input:focus, textarea:focus{
   float: left;
   width: 100%;
 }
+.px-2 {
+  padding-bottom: 25px;
+}
