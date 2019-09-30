@@ -1,0 +1,16 @@
+<div class=" panel panel-default">
+  <div class="col-lg-12 col-md-12 col-sm-8 col-12">
+<div class="common-bg">
+  <h3>Section title</h3>
+
+
+    <div *ngFor="let item of proposalList[0].controls">
+    <div *ngIf="item.ctrltype=='title'" class="panel-heading px-2"><h4>{{item.ctrvalue}}</h4></div>
+    <div *ngIf="item.ctrltype=='desc'"  class="panel-body px-2" [innerHtml] ="item.ctrvalue " ></div>
+    <div *ngIf="item.ctrltype=='img'" class="panel-body px-2">  <img  src="{{item.ctrvalue}}" height="200" width ="200" title="#" alt="#"
+                         /></div>
+    </div>
+
+</div>
+</div>
+</div>

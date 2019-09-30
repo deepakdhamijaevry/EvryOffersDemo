@@ -349,7 +349,23 @@ input:focus, textarea:focus{
     position: relative;
 }
 
-
+.control-double-click
+{
+  
+  border: dotted 1px green;
+    padding: 3px;
+    margin: 3px;
+}
+.control-single-click
+{
+  
+  border: dotted 1px #c7c7c7;
+    padding: 3px;
+    margin: 3px;
+}
+.controls-padding{
+  padding: 3px;
+}
 .dotted-list {
   /* border: solid 1px #ccc; */
   min-height: 60px;
