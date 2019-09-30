@@ -1,0 +1,22 @@
+<div class="panel-heading">
+    <ul class="nav nav-tabs">
+      <li><a href="#tabproposal" data-toggle="tab">Create Proposal</a></li>
+      <li><a href="#tabpreview" data-toggle="tab">Preview Proposal</a></li>
+
+    </ul>
+  </div>
+
+  
+  <div class="tab-content">
+
+    <div class="tab-pane active" id="tabproposal">
+        <app-proposal-category [proposalList]="_proposalArray" [tilesList]="_tilesArray"> </app-proposal-category>
+    </div>
+
+
+    <div class="tab-pane" id="tabpreview">
+        
+       <app-proposal-preview [proposalList]="_proposalArray">  </app-proposal-preview>
+    </div>
+  </div>
+ 

@@ -1,25 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
-import { HttpModule } from "@angular/http";
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MockWrapperService } from './services/mock.service';
-import { CKEditorModule } from 'ckeditor4-angular';
+// import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ProposalWrapperService } from './services/proposal.service';
+// import { CKEditorModule } from 'ckeditor4-angular';
+// import {ComponentsModule} from './shared/components.module';
+import {ProposalModule} from './features/proposal-module/shared/proposal.module';
+
+// import { ProposalComponent } from './features/proposal-module/proposal.component';
+// import { ProposalCategoryComponent } from './features/proposal-module/proposal-category.component';
+// import { ProposalPreviewComponent } from './features/proposal-module/proposal-preview.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    //  ProposalComponent,
+    //  ProposalCategoryComponent,
+    //  ProposalPreviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DragDropModule,
+    // DragDropModule,
     FormsModule,
     HttpModule,
-    CKEditorModule
+    // CKEditorModule,
+    // ComponentsModule,
+    ProposalModule
   ],
-  providers: [MockWrapperService],
+  providers: [ProposalWrapperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
