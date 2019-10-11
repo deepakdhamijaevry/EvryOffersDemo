@@ -416,3 +416,21 @@ input:focus, textarea:focus{
 .px-2 {
   padding-bottom: 25px;
 }
+
+.close-btn:hover .close-btn-visible{
+  margin: -9px -7px 0 0;
+  display: block;
+  float: right;
+  position: relative;
+  font-size: 1.4em;
+  background: white;
+  cursor: pointer;
+}
+
+.close-btn-visible{    
+  display: none;    
+}
+
+.submit-btn{
+  float: right;
+}

@@ -1,0 +1,55 @@
+<div class="container" (click)="onSingleClick($event)" (dblclick)="onDblClick($event)" >
+    <div class="row">
+        <h3 class="col-md-3">Estimate</h3>
+    </div>
+    <div class="table-container">
+        <div class="est-title">
+            <div class="form-elements">
+                <label>Estimate title</label>
+                <input class="form-control" name="estimateTitle" type="text" id="estimateTitle" autocomplete="off"
+                    [(ngModel)]="estTableTitle" (keyup)="checkTitleValidation($event)" maxlength="70" trim="blur"/>
+            </div>
+            <div *ngIf="!isTitle" class="validation-message title-validation">*required</div>
+        </div>
+        <table id="estTable">
+            <thead>
+                <tr *ngFor="let estRow of estimateTable | slice:0:1">
+                    <td></td>
+                    <td *ngFor="let cellValue of estRow.row.column; let j = index">
+                        <i class="fa fa-times-circle" (click)="deleteColumn(j)" title="Delete Column {{j + 1}}"></i>
+                        Column {{j + 1}}
+                    </td>
+                    <td (click)="addColumn()">
+                        <i class="fa fa-plus-circle" title="Add Column"></i>
+                    </td>
+                </tr>
+            </thead>
+            <tbody *ngIf="estimateTable.length > 0">
+                <tr *ngFor="let estRow of estimateTable; let i = index">
+                    <td>Row {{i + 1}}
+                    </td>                   
+                    <td *ngFor="let cell of estRow.row.column; let j = index">
+                        <input class="form-control" type="text" [(ngModel)]="cell.columnCell"
+                            (keyup)="checkEstTableValidation($event,i,j)" name="cellValue" #cellValue="ngModel"
+                            autocomplete="off" id="cellValue" maxlength="70" trim="blur"/>
+                        <div *ngIf="estErrorTable[i].row.column[j].columnCell !== ''" class="validation-message">*required
+                        </div>
+                    </td>
+                    <td>
+                        <i class="fa fa-times-circle" (click)="deleteRow(i)" title="Delete Row {{i + 1}}"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td (click)="addRow()">
+                        <i class="fa fa-plus-circle" title="Add Row"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <!-- <button type="submit" title="Submit" class="btn btn-success"
+                (click)="submit(estimateTitle, estimateTable)">Submit</button> -->
+            <button type="reset" title="Reset" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </div>
+    </div>
+</div>
