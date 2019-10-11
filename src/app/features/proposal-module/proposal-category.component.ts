@@ -4,6 +4,8 @@ import { ITile } from '../../services/model/tile';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { CdkDragEnter, CdkDragExit } from '@angular/cdk/drag-drop';
 import { IControl } from 'src/app/services/model/control';
+import { Subject } from 'rxjs';
+import { ControlType } from '../../shared/enums/app.enum';
 
 @Component({
   selector: 'app-proposal-category',
@@ -12,14 +14,23 @@ import { IControl } from 'src/app/services/model/control';
 export class ProposalCategoryComponent implements OnInit, OnChanges {
   @Input() proposalList: IProposal[] = [];
   @Input() tilesList: ITile[] = [];
+  categorySubject: Subject<any> = new Subject();
   proposals: any = [];
-  tiles: any = [];
-  constructor() {}
+  tiles: any = []; 
+  estimateObj: IControl;
+  subtitleObj: IControl;
 
-  ngOnInit() {}
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
   ngOnChanges() {
     this.proposals = this.proposalList;
     this.tiles = this.tilesList;
+  }
+  closeModule(index) {
+    this.proposals[0].controls.splice(index, 1);
   }
   drop(event: CdkDragDrop<string[]>) {
     /** if item is sorted or item is shuffeled in same container */
@@ -33,23 +44,57 @@ export class ProposalCategoryComponent implements OnInit, OnChanges {
       });
     } else {
       let index = event.currentIndex;
-      const tempArray = JSON.parse(JSON.stringify(event.item.data.controls));
-      tempArray.forEach(data => {
-        this.proposals[0].controls.splice(index, 0, data);
-        index++;
-      });
-
-      this.proposals[0].controls.forEach((item: { order: any; }, i: any) => {
+      let tempArray = [];
+      if (event.item.data.controls != null && event.item.data.controls.length > 0) {
+        tempArray = JSON.parse(JSON.stringify(event.item.data.controls));
+        tempArray.forEach(data => {
+          this.proposals[0].controls.splice(index, 0, data);
+          index++;
+        });
+      }
+      else if (event.item.data == ControlType.est) {
+        this.initEstObj();
+        this.proposals[0].controls.splice(index, 0, this.estimateObj);
+      }
+      else if (event.item.data == ControlType.subtitle) {
+        this.initSubtitleObj();
+        this.proposals[0].controls.splice(index, 0, this.subtitleObj);
+      }
+      else if (event.item.data == ControlType.timeline) {
+        // this.initEstObj();
+        // this.proposals[0].controls.splice(index, 0, this.estObj);
+      }
+      this.proposals[0].controls.forEach((item, i: any) => {
         item.order = i;
       });
-
       this.proposals[0].controls.sort((a: { order: any; }, b: { order: number; }) => {
         return a.order as any - b.order as any;
       });
     }
-    // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290
+    // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290     
+  }
+  initEstObj() {
+    this.estimateObj = {
+      ctrltype: 'estm',
+      ctrvalue: '',
+      order: 0,
+      tileid: 0, 
+      isdragdisabled : false
+    };
+  }
+  initSubtitleObj() {
+    this.subtitleObj = {
+      ctrltype: 'subtitle',
+      ctrvalue: '',
+      order: 0,
+      tileid: 0, 
+      isdragdisabled : false
+    }
   }
   onDblClick(item: IControl) {
     item.isdragdisabled = false;
+  }
+  submitCategory() {
+    this.categorySubject.next();
   }
 }
