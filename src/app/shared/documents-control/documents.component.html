@@ -1,0 +1,12 @@
+<!-- <img title="#" alt="#" (click)="onSingleClick($event)" (dblclick)="onDblClick($event)" src="{{data}}" height="100"
+    width="100" /> -->
+
+<p *ngFor="let file of files">
+    <img [attr.src]="file.name.indexOf('.pdf')>-1 ? '../assets/images/pdf-icon.png' : '../assets/images/xlsx-icon.png'"
+        height="35px" width="70px" title="#" alt="#" />
+    {{file.name}}</p>
+<div class="inputWrapper">
+    Choose File
+    <input #partFile type="file" class="fileInput" name="" multiple (change)="onSelectFile($event)"
+        accept=".pdf,.csv,.xlsx" />
+</div>

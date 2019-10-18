@@ -16,9 +16,11 @@ export class ProposalCategoryComponent implements OnInit, OnChanges {
   @Input() tilesList: ITile[] = [];
   categorySubject: Subject<any> = new Subject();
   proposals: any = [];
-  tiles: any = []; 
+  tiles: any = [];
   estimateObj: IControl;
   subtitleObj: IControl;
+  imageObj: IControl;
+  documentsObj: IControl;
 
   constructor() {
   }
@@ -33,44 +35,56 @@ export class ProposalCategoryComponent implements OnInit, OnChanges {
     this.proposals[0].controls.splice(index, 1);
   }
   drop(event: CdkDragDrop<string[]>) {
-    /** if item is sorted or item is shuffeled in same container */
-    if (event.previousContainer === event.container) {
-      const previousIndexItem = this.proposals[0].controls.find(t => t.order === event.previousIndex);
-      const currentIndexItem = this.proposals[0].controls.find(t => t.order === event.currentIndex);
-      previousIndexItem.order = event.currentIndex;
-      currentIndexItem.order = event.previousIndex;
-      this.proposals[0].controls.sort((a, b) => {
-        return a.order as any - b.order as any;
-      });
-    } else {
-      let index = event.currentIndex;
-      let tempArray = [];
-      if (event.item.data.controls != null && event.item.data.controls.length > 0) {
-        tempArray = JSON.parse(JSON.stringify(event.item.data.controls));
-        tempArray.forEach(data => {
-          this.proposals[0].controls.splice(index, 0, data);
-          index++;
+    debugger;
+    
+      /** if item is sorted or item is shuffeled in same container */
+      if (event.previousContainer === event.container) {
+        const previousIndexItem = this.proposals[0].controls.find(t => t.order === event.previousIndex);
+        const currentIndexItem = this.proposals[0].controls.find(t => t.order === event.currentIndex);
+        previousIndexItem.order = event.currentIndex;
+        currentIndexItem.order = event.previousIndex;
+        this.proposals[0].controls.sort((a, b) => {
+          return a.order as any - b.order as any;
+        });
+      } else {
+        debugger;
+        let index = event.currentIndex;
+        let tempArray = [];
+        if (event.item.data.controls != null && event.item.data.controls.length > 0) {
+          tempArray = JSON.parse(JSON.stringify(event.item.data.controls));
+          tempArray.forEach(data => {
+            this.proposals[0].controls.splice(index, 0, data);
+            index++;
+          });
+        }
+        else if (event.item.data == ControlType.est) {
+          this.initEstObj();
+          this.proposals[0].controls.splice(index, 0, this.estimateObj);
+        }
+        else if (event.item.data == ControlType.img) {
+          this.initImageObj();
+          this.proposals[0].controls.splice(index, 0, this.imageObj);
+        }
+        else if (event.item.data == ControlType.subtitle) {
+          this.initSubtitleObj();
+          this.proposals[0].controls.splice(index, 0, this.subtitleObj);
+        }
+        else if (event.item.data == ControlType.timeline) {
+          // this.initEstObj();
+          // this.proposals[0].controls.splice(index, 0, this.estObj);
+        }
+        else if (event.item.data == ControlType.documents) {
+          this.initDocumentsObj();
+          this.proposals[0].controls.splice(index, 0, this.documentsObj);
+        }
+        this.proposals[0].controls.forEach((item, i: any) => {
+          item.order = i;
+        });
+        this.proposals[0].controls.sort((a: { order: any; }, b: { order: number; }) => {
+          return a.order as any - b.order as any;
         });
       }
-      else if (event.item.data == ControlType.est) {
-        this.initEstObj();
-        this.proposals[0].controls.splice(index, 0, this.estimateObj);
-      }
-      else if (event.item.data == ControlType.subtitle) {
-        this.initSubtitleObj();
-        this.proposals[0].controls.splice(index, 0, this.subtitleObj);
-      }
-      else if (event.item.data == ControlType.timeline) {
-        // this.initEstObj();
-        // this.proposals[0].controls.splice(index, 0, this.estObj);
-      }
-      this.proposals[0].controls.forEach((item, i: any) => {
-        item.order = i;
-      });
-      this.proposals[0].controls.sort((a: { order: any; }, b: { order: number; }) => {
-        return a.order as any - b.order as any;
-      });
-    }
+    
     // https://blog.angularindepth.com/exploring-drag-and-drop-with-the-angular-material-cdk-2e0237857290     
   }
   initEstObj() {
@@ -78,17 +92,37 @@ export class ProposalCategoryComponent implements OnInit, OnChanges {
       ctrltype: 'estm',
       ctrvalue: '',
       order: 0,
-      tileid: 0, 
-      isdragdisabled : false
+      tileid: 0,
+      isdragdisabled: false
     };
   }
+  initImageObj() {
+    this.imageObj = {
+      ctrltype: 'img',
+      ctrvalue: '',
+      order: 0,
+      tileid: 0,
+      isdragdisabled: false
+    }
+  }
+
+  initDocumentsObj() {
+    this.documentsObj = {
+      ctrltype: 'documents',
+      ctrvalue: '',
+      order: 0,
+      tileid: 0,
+      isdragdisabled: false
+    }
+  }
+
   initSubtitleObj() {
     this.subtitleObj = {
       ctrltype: 'subtitle',
       ctrvalue: '',
       order: 0,
-      tileid: 0, 
-      isdragdisabled : false
+      tileid: 0,
+      isdragdisabled: false
     }
   }
   onDblClick(item: IControl) {

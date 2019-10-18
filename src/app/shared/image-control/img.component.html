@@ -1,3 +1,12 @@
-<img  title="#" alt="#" (click)="onSingleClick($event)" (dblclick)="onDblClick($event)" src="{{data}}"
-height="100" width="100" />
+<!-- <img title="#" alt="#" (click)="onSingleClick($event)" (dblclick)="onDblClick($event)" src="{{data}}" height="100"
+    width="100" /> -->
 
+
+    <p *ngFor="let file of files">
+            <img [src]="imageUrl" class="img-fluid" />
+            {{file.name}}</p>
+        <div class="inputWrapper">
+            Choose File
+            <input #partFile type="file" class="fileInput" name="" (change)="onSelectFile($event)"
+                accept="image/*" />
+        </div>
