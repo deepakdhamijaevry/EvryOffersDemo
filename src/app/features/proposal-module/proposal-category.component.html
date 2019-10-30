@@ -98,6 +98,12 @@
                           *ngIf="item.ctrltype == 'subtitle'"
                         ></app-subtitle-control>
 
+                        <app-documents-control
+                        class="controls-padding"
+                        (IsDragDisabled)="item.isdragdisabled = $event"
+                        [data]="item.ctrvalue"
+                        *ngIf="item.ctrltype == 'documents'"
+                      ></app-documents-control>
                       </div>
                     </div>
                   </div>
@@ -177,13 +183,13 @@
           <li cdkDrag [cdkDragData]="'6'">
             <a href="javascript:void(0)"><img src="../assets/images/01.png" title="#" alt="#"/></a>
           </li>
-          <li>
+          <li cdkDrag [cdkDragData]="'3'">
             <a href="javascript:void(0)"><img src="../assets/images/02.png" title="#" alt="#"/></a>
           </li>
           <li cdkDrag [cdkDragData]="'2'">
             <a href="javascript:void(0)"><img src="../assets/images/03.png" title="#" alt="#"/></a>
           </li>
-          <li>
+          <li cdkDrag [cdkDragData]="'7'">
             <a href="javascript:void(0)"><img src="../assets/images/04.png" title="#" alt="#"/></a>
           </li>
         </ul>
