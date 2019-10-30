@@ -36,14 +36,8 @@
             ],
             "scripts": [
               "src/assets/js/jquery-3.2.1.js",
-              "node_modules/bootstrap-fileinput/js/plugins/piexif.min.js",
-              "node_modules/bootstrap-fileinput/js/plugins/sortable.min.js",
-              "node_modules/bootstrap-fileinput/js/plugins/purify.min.js",
               "src/assets/js/popper.min.js",
-              "src/assets/js/bootstrap.min.js",
-              "node_modules/bootstrap-fileinput/js/fileinput.min.js",
-              "node_modules/bootstrap-fileinput/themes/fa/theme.js",
-              "node_modules/bootstrap-fileinput/js/locales/LANG.js"
+              "src/assets/js/bootstrap.min.js"
             ]
           },
           "configurations": {
