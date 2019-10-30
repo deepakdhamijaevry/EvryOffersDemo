@@ -28,9 +28,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss","src/assets/dist/css/bootstrap.min.css","src/assets/css/font-awesome.min.css","src/assets/css/style.css"
+              "src/styles.scss",
+              "src/assets/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-fileinput/css/fileinput.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/style.css"
             ],
-            "scripts": ["src/assets/js/jquery-3.2.1.js","src/assets/js/popper.min.js","src/assets/js/bootstrap.min.js"]
+            "scripts": [
+              "src/assets/js/jquery-3.2.1.js",
+              "node_modules/bootstrap-fileinput/js/plugins/piexif.min.js",
+              "node_modules/bootstrap-fileinput/js/plugins/sortable.min.js",
+              "node_modules/bootstrap-fileinput/js/plugins/purify.min.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "node_modules/bootstrap-fileinput/js/fileinput.min.js",
+              "node_modules/bootstrap-fileinput/themes/fa/theme.js",
+              "node_modules/bootstrap-fileinput/js/locales/LANG.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,9 +107,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-fileinput/css/fileinput.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-3.2.1.js",
+              "src/assets/js/popper.min.js",
+              "src/assets/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
@@ -124,6 +146,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "EvryOffersDemo"
 }

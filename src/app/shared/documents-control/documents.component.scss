@@ -23,3 +23,19 @@
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
+
+.img-detail{
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 16px;
+}
+
+.img-delete{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 16px;
+}

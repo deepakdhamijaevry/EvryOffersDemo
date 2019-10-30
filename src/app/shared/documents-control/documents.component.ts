@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ValidatorService } from '../utility/validation.service';
-
+import { UtilityService } from '../services/utility.service';
 
 @Component({
   selector: 'app-documents-control',
@@ -11,8 +11,8 @@ export class DocumentsComponent {
   @Input() data: Date;
   @Output() IsDragDisabled: EventEmitter<string> = new EventEmitter();
   files = [];
-  imageUrl = '';
-  constructor(public validatorService: ValidatorService) {
+  @ViewChild('documentFile', { static: false }) documentFileVariable: ElementRef;
+  constructor(public validatorService: ValidatorService, public utilityService: UtilityService) {
 
   }
 
@@ -31,8 +31,30 @@ export class DocumentsComponent {
         for (var i = 0; i < event.target.files.length; i++) {
           this.files.push(event.target.files[i]);
         }
-      } 
+      }
     }
+    this.reset();
+  }
+
+  onDeleteFile(file: any) {
+    if (file !== null && file !== undefined) {
+      let index = this.files.find(f => f == file);
+      this.files.splice(index, 1);
+    }
+  }
+
+  previewFile(file: any) {
+    if (file !== null) {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: any) => { // called once readAsDataURL is completed
+        this.utilityService.previewFile(event.target.result, file.type);
+      };
+    }
+  }
+
+  reset() {
+    this.documentFileVariable.nativeElement.value = "";
   }
 
 }

@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ValidatorService } from './utility/validation.service';
+import { UtilityService } from './services/utility.service';
 
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -24,7 +25,7 @@ import { DocumentsComponent } from './documents-control/documents.component';
   imports: [FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule, CommonModule, PlatformModule, CKEditorModule, NgxTrimDirectiveModule],
   declarations: [DescriptionComponent, ImgComponent, TitleComponent, EstimateComponent, SubtitleComponent, DocumentsComponent],
   exports: [DescriptionComponent, ImgComponent, TitleComponent, PlatformModule, EstimateComponent, SubtitleComponent, DocumentsComponent],
-  providers: [ValidatorService],
+  providers: [ValidatorService, UtilityService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ComponentsModule { }
